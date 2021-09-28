@@ -1,10 +1,10 @@
 package co.edu.usbcali.arquitectura.dominio.modelo.entidad;
 
-import co.edu.usbcali.arquitectura.dominio.excepcion.ExcepcionDuplicidad;
-
-import java.util.Locale;
+import co.edu.usbcali.arquitectura.dominio.excepcion.ExcepcionCantidad;
 
 public class Clip {
+    private static final String EL_CLIP_NO_CUMPLE_CON_LAS_PALABRAS = "El videoclip no cumple con las palabras minimas: %s";
+    private static final int CANTIDAD_PALABRAS_MINIMAS_GUARDAR_CLIP = 10;
     public static final String[] PALABRAS_GROSERAS = {"MIERDA"};
     private Long id;
     private String subtitulos;
@@ -54,5 +54,13 @@ public class Clip {
             }
         }
         return contiene;
+    }
+
+    public void validarMinimoPalabrasGuardarClip() {
+        String[] palabras = this.subtitulos.split(" ");
+        int cantidad = palabras.length;
+        if (cantidad < CANTIDAD_PALABRAS_MINIMAS_GUARDAR_CLIP) {
+            throw new ExcepcionCantidad(String.format(EL_CLIP_NO_CUMPLE_CON_LAS_PALABRAS, CANTIDAD_PALABRAS_MINIMAS_GUARDAR_CLIP));
+        }
     }
 }

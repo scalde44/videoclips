@@ -6,7 +6,6 @@ import co.edu.usbcali.arquitectura.dominio.puerto.dao.DaoClip;
 import co.edu.usbcali.arquitectura.dominio.puerto.repositorio.RepositorioClip;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ServicioEliminarClipsPalabrasGroseras {
     private final RepositorioClip repositorioClip;
